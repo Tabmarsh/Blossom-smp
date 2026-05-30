@@ -1,5 +1,6 @@
 import React from 'react'
 import supabaseAdmin from '../../lib/supabaseServer'
+import tiers from '../data/tiers'
 
 type Player = {
   id: string
@@ -35,21 +36,21 @@ export default async function Leaderboard() {
         .eq('player_id', player.id)
         .order('achieved_at', { ascending: false })
 
+      const tierLabel = tiers[index] ?? ''
+
       return (
-        <li key={player.id} className="flex items-center justify-between bg-gray-800/50 p-4 rounded">
+        <li key={player.id} className="flex items-center justify-between bg-gray-800/5 p-4 rounded border border-gray-200 dark:border-neutral-800">
           <div className="flex items-center gap-4">
-            <div className="text-sm text-gray-400">#{index + 1}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">#{index + 1}</div>
             <div>
               <div className="font-medium">{player.username}</div>
-              <div className="text-xs text-gray-400">AS</div>
+              <div className="text-xs text-gray-500">{tierLabel}</div>
             </div>
           </div>
           <div className="text-right">
             <div className="font-semibold">{player.points} pts</div>
             <div className="text-xs text-gray-400">
-              {achievements && achievements.length > 0
-                ? achievements.map((a) => `${a.event_name} ${a.tier}`).join(', ')
-                : '—'}
+              {achievements && achievements.length > 0 ? achievements.map((a) => `${a.event_name} ${a.tier}`).join(', ') : '—'}
             </div>
           </div>
         </li>
