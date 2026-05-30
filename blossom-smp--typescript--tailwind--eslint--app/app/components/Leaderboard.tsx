@@ -1,7 +1,7 @@
 import React from 'react'
 import supabaseAdmin from '../../lib/supabaseServer'
 
-type Player = {Synixa1
+type Player = {
   id: string
   username: string
   display_name?: string | null
@@ -9,7 +9,7 @@ type Player = {Synixa1
   avatar_url?: string | null
 }
 
-type Achievement = {UHC-LT4 MACE-LT3 SMP-LT3 NETHPOT-LT3 CRYSTAL-HT4 DIAMONDPOT-LT3 SWORD-HT3 AXE-LT3 DIAMONDSMP-LT3
+type Achievement = {
   id: string
   event_name: string
   tier: string
@@ -64,4 +64,4 @@ export default async function Leaderboard() {
       <ul className="mt-4 space-y-3">{rows}</ul>
     </section>
   )
-  
+}
